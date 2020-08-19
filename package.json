@@ -30,12 +30,12 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
-    },
-    "lint-staged": {
-      "./src/*.{js,jsx}": [
-        "yarn prettier --write"
-      ]
     }
+  },
+  "lint-staged": {
+    "./src/*.{js,jsx}": [
+      "yarn prettier --write"
+    ]
   },
   "browserslist": {
     "production": [
