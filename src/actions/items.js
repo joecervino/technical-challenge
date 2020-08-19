@@ -5,11 +5,24 @@ const uuid = () => {
   });
 }
 
-export const addItem = () => ({
+export const addItem = (text) => ({
   type: 'ADD_ITEM',
   payload: {
     uuid: uuid(),
     complete: false,
+    completionTime: 0,
+    text: text || "",
+    subtopics: [],
+  }
+})
+
+export const addSubItem = (parentUuid) => ({
+  type: 'ADD_ITEM',
+  payload: {
+    parentUuid,
+    uuid: uuid(),
+    complete: false,
+    completionTime: 0,
     text: "",
   }
 })
@@ -21,3 +34,20 @@ export const updateItem = (uuid, updatedItem) => ({
     updatedItem,
   }
 });
+
+export const updateSubItem = (parentUuid, uuid, updatedItem) => ({
+  type: 'UPDATE_ITEM',
+  payload: {
+    parentUuid,
+    uuid,
+    updatedItem,
+  }
+});
+
+export const deleteItem = (uuid, parentUuid) => ({
+  type: 'DELETE_ITEM',
+  payload: {
+    uuid,
+    parentUuid
+  }
+})

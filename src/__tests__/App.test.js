@@ -1,8 +1,8 @@
 import React from 'react'
-import items from './reducers/items.js'
+import items from '../reducers/items.js'
 import { render, fireEvent, screen } from '@testing-library/react'
-import AddItemButton from './AddItemButton.jsx'
-import Item from './Item.jsx'
+import AddItemButton from '../components/AddItemButton.jsx'
+import Item from '../components/Item.jsx'
 
 it('should call onAddItem if addItem button is clicked', () => {
   const mockOnAddItem = jest.fn()
