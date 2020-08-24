@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Dropdown from "react-bootstrap/Dropdown"
-import Button from "react-bootstrap/Button"
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 
 
 
@@ -15,13 +15,21 @@ const MenuDropdown = ({
 
         switch(key) {
             case 'delete':
-                return (<Dropdown.Item key={`${uuid}-delete`} onClick={config.onClick}>Delete</Dropdown.Item>)
+                return (
+                    <Dropdown.Item
+                        data-testid="delete-dropdown-option"
+                        key={`${uuid}-delete`}
+                        onClick={config.onClick}
+                    >
+                        Delete
+                    </Dropdown.Item>
+                )
             default:
                 return null
         }
     })
 
-    const CustomToggle = React.forwardRef(({children, onClick}, ref) => {
+    const CustomToggle = React.forwardRef(({ children, onClick }, ref) => {
         return (
             <Button 
                 ref={ref} 
@@ -29,6 +37,8 @@ const MenuDropdown = ({
                 variant="outline-danger" 
                 style={{ borderRadius: '0px .2rem .2rem 0px' }}
                 onClick={onClick}
+                data-testid="dropdown-toggle"
+                aria-label="item-dropdown-delete-option"
             >
                 <BsThreeDotsVertical />
                 {children}
@@ -37,10 +47,10 @@ const MenuDropdown = ({
     })
     
     return (
-        <Dropdown size="sm">
+        <Dropdown size="sm" aria-label="item-dropdown-menu">
             <Dropdown.Toggle as={CustomToggle}></Dropdown.Toggle>
-            <Dropdown.Menu>
-                {menuOptions}
+            <Dropdown.Menu data-testid="dropdown-menu">
+                {menuOptions.length ? menuOptions : null}
             </Dropdown.Menu>
         </Dropdown>
     )

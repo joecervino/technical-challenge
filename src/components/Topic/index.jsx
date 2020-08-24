@@ -4,8 +4,9 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { BsCheck, BsChat } from "react-icons/bs";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import SubtopicsList from './SubtopicsList'
-import MenuDropdown from './MenuDropdown'
+import SubtopicsList from '../SubtopicsList/index.jsx'
+import MenuDropdown from '../MenuDropdown/index.jsx'
+
 
 
 const Topic = ({ 
@@ -18,16 +19,20 @@ const Topic = ({
   onDeleteSubtopic,
   onSubtopicCompleteClick,
 }) => {
+  if (!topic) return null
+  
   const options = { delete: { onClick: () => onDeleteClick(topic.uuid) } }
   
   return (
-    <Col>
+    <Col data-testid="topic-container">
       <Row className="mt-3 bg-white">
         <Col>
           <input
             type="text"
             className="form-control"
             placeholder="Enter text here"
+            aria-label="form-control"
+            data-testid="form-control"
             value={topic.text}
             onChange={(e) => onItemTextChange(topic.uuid, e.target.value)}
           />
@@ -39,6 +44,7 @@ const Topic = ({
               variant={topic.complete ? "success" : "outline-secondary"}
               size="sm"
               data-testid="topic-complete-button"
+              aria-label="topic-complete-button"
             >
               <BsCheck />
             </Button>
@@ -47,6 +53,7 @@ const Topic = ({
               variant="outline-warning"
               size="sm"
               data-testid="topic-subtopic-button"
+              aria-label="topic-subtopic-button"
             >
               <BsChat />
             </Button>
@@ -64,5 +71,7 @@ const Topic = ({
       />
     </Col>
 )};
+
+
 
 export default Topic;

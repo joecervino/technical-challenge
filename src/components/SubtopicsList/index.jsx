@@ -1,5 +1,5 @@
 import React from 'react';
-import Subtopic from "./Subtopic";
+import Subtopic from "../Subtopic/index.jsx";
 
 
 

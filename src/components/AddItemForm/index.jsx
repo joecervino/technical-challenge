@@ -4,9 +4,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { BsPlus } from 'react-icons/bs';
 
-const AddItemButton = ({ 
+
+
+const AddItemForm = ({ 
   newItemText,
-  onAddItem, 
+  onAddItem,
   setNewItemText,
 }) => (
   <InputGroup className="align-items-center">
@@ -15,9 +17,13 @@ const AddItemButton = ({
       placeholder="Add a topic to discuss..."
       aria-label="Add a topic to discuss"
       onChange={(e) => setNewItemText(e.target.value)}
+      data-testid="add-item-input"
     />
     <InputGroup.Append>
-      <Button onClick={() => {
+      <Button 
+        aria-label="add-item-button"
+        data-testid="add-item-button"
+        onClick={() => {
           onAddItem()
           setNewItemText('')
         }}
@@ -29,4 +35,6 @@ const AddItemButton = ({
 
 );
 
-export default AddItemButton;
+
+
+export default AddItemForm;
